@@ -1,32 +1,29 @@
-# d3-shape
+# d3-формы
 
-Visualizations typically consist of discrete graphical marks, such as [symbols](#symbols), [arcs](#arcs), [lines](#lines) and [areas](#areas). While the rectangles of a bar chart may be easy enough to generate directly using [SVG](http://www.w3.org/TR/SVG/paths.html#PathData) or [Canvas](http://www.w3.org/TR/2dcontext/#canvaspathmethods), other shapes are complex, such as rounded annular sectors and centripetal Catmull–Rom splines. This module provides a variety of shape generators for your convenience.
+Визуализации обычно состоят из отдельных графических меток, таких как [символы](#symbols), [дуги](#arcs), [линии](#lines) и [области](#areas). Хотя прямоугольники гистограммы могут быть достаточно просты для непосредственного создания с использованием [SVG](http://www.w3.org/TR/SVG/paths.html#PathData) или [Canvas](http://www.w3.org/TR/2dcontext/#canvaspathmethods), другие формы являются сложными, например, закругленные кольцевые сектора и центростремительные сплайны Катмулла-Рома. Этот модуль предоставляет различные генераторы формы для вашего удобства.
 
-As with other aspects of D3, these shapes are driven by data: each shape generator exposes accessors that control how the input data are mapped to a visual representation. For example, you might define a line generator for a time series by [scaling](https://github.com/d3/d3-scale) fields of your data to fit the chart:
+Как и в других аспектах D3, эти формы управляются данными: каждый генератор форм предоставляет средства доступа, которые управляют тем, как входные данные отображаются в визуальном представлении. Например, вы можете определить генератор строк для временного ряда, [масштабируя](https://github.com/d3/d3-scale) поля ваших данных, чтобы они соответствовали диаграмме:  
 
 ```js
 var line = d3.line()
     .x(function(d) { return x(d.date); })
     .y(function(d) { return y(d.value); });
 ```
-
-This line generator can then be used to compute the `d` attribute of an SVG path element:
+Этот генератор строк может затем использоваться для вычисления `d` атрибута элемента пути SVG:  
 
 ```js
 path.datum(data).attr("d", line);
 ```
-
-Or you can use it to render to a Canvas 2D context:
+Или вы можете использовать его для рендеринга в 2D-контекст Canvas:  
 
 ```js
 line.context(context)(data);
 ```
+Для получения дополнительной информации прочитайте [Введение в d3-формы](https://medium.com/@mbostock/introducing-d3-shape-73f8367e6d12).
 
-For more, read [Introducing d3-shape](https://medium.com/@mbostock/introducing-d3-shape-73f8367e6d12).
+## Установка
 
-## Installing
-
-If you use NPM, `npm install d3-shape`. Otherwise, download the [latest release](https://github.com/d3/d3-shape/releases/latest). You can also load directly from [d3js.org](https://d3js.org), either as a [standalone library](https://d3js.org/d3-shape.v1.min.js) or as part of [D3 4.0](https://github.com/d3/d3). AMD, CommonJS, and vanilla environments are supported. In vanilla, a `d3` global is exported:
+Если вы используете НПМ, то `npm install d3-shape`. В противном случае загрузите [последнюю версию](https://github.com/d3/d3-shape/releases/latest). Вы также можете загрузить напрямую из [d3js.org](https://d3js.org), либо как отдельную библиотеку, либо как часть [D3 4.0](https://github.com/d3/d3). Поддерживаются AMD, CommonJS и vanilla. В ванили `d3` экспортируется глобально:
 
 ```html
 <script src="https://d3js.org/d3-path.v1.min.js"></script>
@@ -38,7 +35,7 @@ var line = d3.line();
 </script>
 ```
 
-[Try d3-shape in your browser.](https://tonicdev.com/npm/d3-shape)
+[Попробуйте d3-shape в вашем браузере.](https://tonicdev.com/npm/d3-shape)  
 
 ## API Reference
 
