@@ -37,34 +37,34 @@ var line = d3.line();
 
 [Попробуйте d3-shape в вашем браузере.](https://tonicdev.com/npm/d3-shape)  
 
-## API Reference
+## Справочник по API
 
-* [Arcs](#arcs)
-* [Pies](#pies)
-* [Lines](#lines)
-* [Areas](#areas)
-* [Curves](#curves)
+* [Дуги](#arcs)
+* [Сектора](#pies)
+* [Линии](#lines)
+* [Области](#areas)
+* [Кривые](#curves)
 * [Custom Curves](#custom-curves)
-* [Links](#links)
-* [Symbols](#symbols)
+* [Связи](#links)
+* [Знаки](#symbols)
 * [Custom Symbol Types](#custom-symbol-types)
-* [Stacks](#stacks)
+* [Кучи](#stacks)
 
-### Arcs
+### Дуги
 
 [<img alt="Pie Chart" src="https://raw.githubusercontent.com/d3/d3-shape/master/img/pie.png" width="295" height="295">](http://bl.ocks.org/mbostock/8878e7fd82034f1d63cf)[<img alt="Donut Chart" src="https://raw.githubusercontent.com/d3/d3-shape/master/img/donut.png" width="295" height="295">](http://bl.ocks.org/mbostock/2394b23da1994fc202e1)
 
-The arc generator produces a [circular](https://en.wikipedia.org/wiki/Circular_sector) or [annular](https://en.wikipedia.org/wiki/Annulus_\(mathematics\)) sector, as in a pie or donut chart. If the difference between the [start](#arc_startAngle) and [end](#arc_endAngle) angles (the *angular span*) is greater than [τ](https://en.wikipedia.org/wiki/Turn_\(geometry\)#Tau_proposal), the arc generator will produce a complete circle or annulus. If it is less than τ, arcs may have [rounded corners](#arc_cornerRadius) and [angular padding](#arc_padAngle). Arcs are always centered at ⟨0,0⟩; use a transform (see: [SVG](http://www.w3.org/TR/SVG/coords.html#TransformAttribute), [Canvas](http://www.w3.org/TR/2dcontext/#transformations)) to move the arc to a different position.
+Генератор дуги создает [круговой](https://en.wikipedia.org/wiki/Circular_sector) или [кольцевой](https://en.wikipedia.org/wiki/Annulus_\(mathematics\)) сектор, как на круговой или кольцевой диаграмме. Если разница между [начальным](#arc_startAngle) и [конечным](#arc_endAngle) углами (*угловой промежуток*) больше, чем [τ](https://en.wikipedia.org/wiki/Turn_\(geometry\)#Tau_proposal), генератор дуги создаст полный круг или затрубное пространство. Если оно меньше τ, дуги могут иметь [закруглённые углы](#arc_cornerRadius) и [угловое заполнение](#arc_padAngle). Дуги всегда центрированы на ⟨0,0⟩; трансформируйте (см: [SVG](http://www.w3.org/TR/SVG/coords.html#TransformAttribute), [Canvas](http://www.w3.org/TR/2dcontext/#transformations)), чтобы переместить дугу в другое положение.
 
-See also the [pie generator](#pies), which computes the necessary angles to represent an array of data as a pie or donut chart; these angles can then be passed to an arc generator.
+Смотрите также [круговой генератор](#pies), вычисляющий необходимые углы к массивам данных в виде круговой или кольцевой диаграммы; эти углы могут быть переданы на генератор дуги.
 
 <a name="arc" href="#arc">#</a> d3.<b>arc</b>() [<>](https://github.com/d3/d3-shape/blob/master/src/arc.js "Source")
 
-Constructs a new arc generator with the default settings.
+Создаёт новый генератор дуги с настройками по умолчанию.
 
 <a name="_arc" href="#_arc">#</a> <i>arc</i>(<i>arguments…</i>) [<>](https://github.com/d3/d3-shape/blob/master/src/arc.js#L89 "Source")
 
-Generates an arc for the given *arguments*. The *arguments* are arbitrary; they are simply propagated to the arc generator’s accessor functions along with the `this` object. For example, with the default settings, an object with radii and angles is expected:
+Создает дугу для заданных *аргументов* . Эти *аргументы* являются произвольными; они просто распространяются на функции доступа генератора дуги вместе с `this` объектом. Например, с настройками по умолчанию ожидается объект с радиусами и углами:
 
 ```js
 var arc = d3.arc();
@@ -77,7 +77,7 @@ arc({
 }); // "M0,-100A100,100,0,0,1,100,0L0,0Z"
 ```
 
-If the radii and angles are instead defined as constants, you can generate an arc without any arguments:
+Если радиусы и углы определены как константы, вы можете создать дугу без каких-либо аргументов:
 
 ```js
 var arc = d3.arc()
@@ -89,7 +89,7 @@ var arc = d3.arc()
 arc(); // "M0,-100A100,100,0,0,1,100,0L0,0Z"
 ```
 
-If the arc generator has a [context](#arc_context), then the arc is rendered to this context as a sequence of [path method](http://www.w3.org/TR/2dcontext/#canvaspathmethods) calls and this function returns void. Otherwise, a [path data](http://www.w3.org/TR/SVG/paths.html#PathData) string is returned.
+Если генератор дуги имеет [контекст](#arc_context), то дуга отображается в этом контексте как последовательность вызовов [метода пути](http://www.w3.org/TR/2dcontext/#canvaspathmethods), и эта функция возвращает void. В противном случае возвращается строка [данных пути](http://www.w3.org/TR/SVG/paths.html#PathData).
 
 <a name="arc_centroid" href="#arc_centroid">#</a> <i>arc</i>.<b>centroid</b>(<i>arguments…</i>) [<>](https://github.com/d3/d3-shape/blob/master/src/arc.js#L224 "Source")
 
