@@ -89,19 +89,21 @@ var arc = d3.arc()
 arc(); // "M0,-100A100,100,0,0,1,100,0L0,0Z"
 ```
 
-Если генератор дуги имеет [контекст](#arc_context), то дуга отображается в этом контексте как последовательность вызовов [метода пути](http://www.w3.org/TR/2dcontext/#canvaspathmethods), и эта функция возвращает void. В противном случае возвращается строка [данных пути](http://www.w3.org/TR/SVG/paths.html#PathData).
+Если генератор дуги имеет [контекст](#arc_context), то дуга отображается в этом контексте как последовательность вызовов [метода пути](http://www.w3.org/TR/2dcontext/#canvaspathmethods), и эта функция возвращает void.  
+В противном случае возвращается строка [данных пути](http://www.w3.org/TR/SVG/paths.html#PathData).
 
 <a name="arc_centroid" href="#arc_centroid">#</a> <i>arc</i>.<b>centroid</b>(<i>arguments…</i>) [<>](https://github.com/d3/d3-shape/blob/master/src/arc.js#L224 "Source")
 
-Computes the midpoint [*x*, *y*] of the center line of the arc that would be [generated](#_arc) by the given *arguments*. The *arguments* are arbitrary; they are simply propagated to the arc generator’s accessor functions along with the `this` object. To be consistent with the generated arc, the accessors must be deterministic, *i.e.*, return the same value given the same arguments. The midpoint is defined as ([startAngle](#arc_startAngle) + [endAngle](#arc_endAngle)) / 2 and ([innerRadius](#arc_innerRadius) + [outerRadius](#arc_outerRadius)) / 2. For example:
+Вычисляет среднюю точку [*x*, *y*] центральной линии дуги, которая будет [сгенерирована](#_arc) данными *аргументами*. Эти *аргументы* являются произвольными; они просто распространяются на функции доступа генератора дуги вместе с `this` объектом. Чтобы соответствовать сгенерированной дуге, методы доступа должны быть детерминированными, *то есть* возвращать одно и то же значение при одинаковых аргументах. Средняя точка определяется как ([startAngle](#arc_startAngle) + [endAngle](#arc_endAngle)) / 2 и ( [innerRadius](#arc_innerRadius) + [externalRadius](#arc_outerRadius)) / 2. Например:
 
 [<img alt="Circular Sector Centroids" src="https://raw.githubusercontent.com/d3/d3-shape/master/img/centroid-circular-sector.png" width="250" height="250">](http://bl.ocks.org/mbostock/9b5a2fd1ce1a146f27e4)[<img alt="Annular Sector Centroids" src="https://raw.githubusercontent.com/d3/d3-shape/master/img/centroid-annular-sector.png" width="250" height="250">](http://bl.ocks.org/mbostock/c274877f647361f3df7d)
 
-Note that this is **not the geometric center** of the arc, which may be outside the arc; this method is merely a convenience for positioning labels.
+Обратите внимание, что это **не геометрический центр** дуги, который может находиться за пределами дуги; этот метод просто удобен для размещения меток.
 
 <a name="arc_innerRadius" href="#arc_innerRadius">#</a> <i>arc</i>.<b>innerRadius</b>([<i>radius</i>]) [<>](https://github.com/d3/d3-shape/blob/master/src/arc.js#L230 "Source")
 
-If *radius* is specified, sets the inner radius to the specified function or number and returns this arc generator. If *radius* is not specified, returns the current inner radius accessor, which defaults to:
+Если указан *радиус*, то устанавливает внутренний радиус для указанной функции или числа и возвращает этот генератор дуги.  
+Если *радиус* не указан, возвращает текущий метод доступа к внутреннему радиусу, который по умолчанию:
 
 ```js
 function innerRadius(d) {
@@ -109,11 +111,12 @@ function innerRadius(d) {
 }
 ```
 
-Specifying the inner radius as a function is useful for constructing a stacked polar bar chart, often in conjunction with a [sqrt scale](https://github.com/d3/d3-scale#sqrt). More commonly, a constant inner radius is used for a donut or pie chart. If the outer radius is smaller than the inner radius, the inner and outer radii are swapped. A negative value is treated as zero.
+Указание внутреннего радиуса как функции полезно для построения столбчатой диаграммы с накоплением, часто в сочетании со [шкалой sqrt](https://github.com/d3/d3-scale#sqrt). Чаще всего постоянный внутренний радиус используется для кольцевой или круговой диаграммы. Если внешний радиус меньше внутреннего радиуса, внутренний и внешний радиусы меняются местами. Отрицательное значение рассматривается как ноль.
 
 <a name="arc_outerRadius" href="#arc_outerRadius">#</a> <i>arc</i>.<b>outerRadius</b>([<i>radius</i>]) [<>](https://github.com/d3/d3-shape/blob/master/src/arc.js#L234 "Source")
 
-If *radius* is specified, sets the outer radius to the specified function or number and returns this arc generator. If *radius* is not specified, returns the current outer radius accessor, which defaults to:
+Если указан *радиус*, устанавливает внешний радиус для указанной функции или числа и возвращает этот генератор дуги.  
+Если *радиус* не указан, возвращает текущий метод доступа к внешнему радиусу, который по умолчанию:
 
 ```js
 function outerRadius(d) {
