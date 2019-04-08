@@ -94,7 +94,7 @@ arc(); // "M0,-100A100,100,0,0,1,100,0L0,0Z"
 
 <a name="arc_centroid" href="#arc_centroid">#</a> <i>arc</i>.<b>centroid</b>(<i>arguments…</i>) [<>](https://github.com/d3/d3-shape/blob/master/src/arc.js#L224 "Source")
 
-Вычисляет среднюю точку [*x*, *y*] центральной линии дуги, которая будет [сгенерирована](#_arc) данными *аргументами*. Эти *аргументы* являются произвольными; они просто распространяются на функции доступа генератора дуги вместе с `this` объектом. Чтобы соответствовать сгенерированной дуге, методы доступа должны быть детерминированными, *то есть* возвращать одно и то же значение при одинаковых аргументах. Средняя точка определяется как ([startAngle](#arc_startAngle) + [endAngle](#arc_endAngle)) / 2 и ( [innerRadius](#arc_innerRadius) + [externalRadius](#arc_outerRadius)) / 2. Например:
+Вычисляет среднюю точку [*x*, *y*] центральной линии дуги, которая будет [сгенерирована](#_arc) данными *аргументами*. Эти *аргументы* являются произвольными; они просто распространяются на функции доступа генератора дуги вместе с `this` объектом. Чтобы соответствовать сгенерированной дуге, методы доступа должны быть детерминированными, *то есть* возвращать одно и то же значение при одинаковых аргументах. Средняя точка определяется как ([startAngle](#arc_startAngle) + [endAngle](#arc_endAngle)) / 2 и ( [innerRadius](#arc_innerRadius) + [outerRadius](#arc_outerRadius)) / 2. Например:
 
 [<img alt="Circular Sector Centroids" src="https://raw.githubusercontent.com/d3/d3-shape/master/img/centroid-circular-sector.png" width="250" height="250">](http://bl.ocks.org/mbostock/9b5a2fd1ce1a146f27e4)[<img alt="Annular Sector Centroids" src="https://raw.githubusercontent.com/d3/d3-shape/master/img/centroid-annular-sector.png" width="250" height="250">](http://bl.ocks.org/mbostock/c274877f647361f3df7d)
 
@@ -124,11 +124,11 @@ function outerRadius(d) {
 }
 ```
 
-Specifying the outer radius as a function is useful for constructing a coxcomb or polar bar chart, often in conjunction with a [sqrt scale](https://github.com/d3/d3-scale#sqrt). More commonly, a constant outer radius is used for a pie or donut chart. If the outer radius is smaller than the inner radius, the inner and outer radii are swapped. A negative value is treated as zero.
+Указание внешнего радиуса в качестве функции полезно для построения диаграмм Кокса или Полярной гистограммы, часто в сочетании со [шкалой sqrt](https://github.com/d3/d3-scale#sqrt). Чаще всего постоянный внешний радиус используется для круговой или кольцевой диаграммы. Если внешний радиус меньше внутреннего радиуса, внутренний и внешний радиусы меняются местами. Отрицательное значение рассматривается как ноль.
 
 <a name="arc_cornerRadius" href="#arc_cornerRadius">#</a> <i>arc</i>.<b>cornerRadius</b>([<i>radius</i>]) [<>](https://github.com/d3/d3-shape/blob/master/src/arc.js#L238 "Source")
 
-If *radius* is specified, sets the corner radius to the specified function or number and returns this arc generator. If *radius* is not specified, returns the current corner radius accessor, which defaults to:
+Если указан *радиус* , устанавливает угловой радиус для указанной функции или числа и возвращает этот генератор дуги. Если *радиус* не указан, возвращает текущий метод доступа к радиусу угла, который по умолчанию:
 
 ```js
 function cornerRadius() {
@@ -136,7 +136,7 @@ function cornerRadius() {
 }
 ```
 
-If the corner radius is greater than zero, the corners of the arc are rounded using circles of the given radius. For a circular sector, the two outer corners are rounded; for an annular sector, all four corners are rounded. The corner circles are shown in this diagram:
+Если радиус угла больше нуля, углы дуги округляются с использованием окружностей данного радиуса. Для круглого сектора два внешних угла закруглены; для кольцевого сектора все четыре угла закруглены. Угловые круги показаны на этой диаграмме:
 
 [<img alt="Rounded Circular Sectors" src="https://raw.githubusercontent.com/d3/d3-shape/master/img/rounded-circular-sector.png" width="250" height="250">](http://bl.ocks.org/mbostock/e5e3680f3079cf5c3437)[<img alt="Rounded Annular Sectors" src="https://raw.githubusercontent.com/d3/d3-shape/master/img/rounded-annular-sector.png" width="250" height="250">](http://bl.ocks.org/mbostock/f41f50e06a6c04828b6e)
 
