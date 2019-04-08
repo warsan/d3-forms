@@ -140,11 +140,11 @@ function cornerRadius() {
 
 [<img alt="Rounded Circular Sectors" src="https://raw.githubusercontent.com/d3/d3-shape/master/img/rounded-circular-sector.png" width="250" height="250">](http://bl.ocks.org/mbostock/e5e3680f3079cf5c3437)[<img alt="Rounded Annular Sectors" src="https://raw.githubusercontent.com/d3/d3-shape/master/img/rounded-annular-sector.png" width="250" height="250">](http://bl.ocks.org/mbostock/f41f50e06a6c04828b6e)
 
-The corner radius may not be larger than ([outerRadius](#arc_outerRadius) - [innerRadius](#arc_innerRadius)) / 2. In addition, for arcs whose angular span is less than π, the corner radius may be reduced as two adjacent rounded corners intersect. This is occurs more often with the inner corners. See the [arc corners animation](http://bl.ocks.org/mbostock/b7671cb38efdfa5da3af) for illustration.
+Радиус угла не может быть больше ([outerRadius](#arc_outerRadius) - [innerRadius](#arc_innerRadius)) / 2. Кроме того, для дуг, угловой диапазон которых меньше π, радиус угла может быть уменьшен при пересечении двух смежных закругленных углов. Это чаще всего происходит с внутренними углами. Смотрите [анимацию углов дуги](http://bl.ocks.org/mbostock/b7671cb38efdfa5da3af) для иллюстрации.
 
 <a name="arc_startAngle" href="#arc_startAngle">#</a> <i>arc</i>.<b>startAngle</b>([<i>angle</i>]) [<>](https://github.com/d3/d3-shape/blob/master/src/arc.js#L246 "Source")
 
-If *angle* is specified, sets the start angle to the specified function or number and returns this arc generator. If *angle* is not specified, returns the current start angle accessor, which defaults to:
+Если указан *угол*, задает начальный угол для указанной функции или числа и возвращает этот генератор дуги. Если *угол* не указан, возвращает текущий начальный угол доступа, который по умолчанию:
 
 ```js
 function startAngle(d) {
@@ -152,11 +152,11 @@ function startAngle(d) {
 }
 ```
 
-The *angle* is specified in radians, with 0 at -*y* (12 o’clock) and positive angles proceeding clockwise. If |endAngle - startAngle| ≥ τ, a complete circle or annulus is generated rather than a sector.
+*Угол* задается в радианах, с 0 на - *у* (12 часов) и положительных углов , идущих по часовой стрелке. Если |endAngle - startAngle| ≥ τ, создается полный круг или кольцо, а не сектор.
 
 <a name="arc_endAngle" href="#arc_endAngle">#</a> <i>arc</i>.<b>endAngle</b>([<i>angle</i>]) [<>](https://github.com/d3/d3-shape/blob/master/src/arc.js#L250 "Source")
 
-If *angle* is specified, sets the end angle to the specified function or number and returns this arc generator. If *angle* is not specified, returns the current end angle accessor, which defaults to:
+Если указан *угол*, устанавливает конечный угол для указанной функции или числа и возвращает этот генератор дуги. Если *угол* не указан, возвращает текущий метод доступа к конечному углу, который по умолчанию:
 
 ```js
 function endAngle(d) {
@@ -164,11 +164,11 @@ function endAngle(d) {
 }
 ```
 
-The *angle* is specified in radians, with 0 at -*y* (12 o’clock) and positive angles proceeding clockwise. If |endAngle - startAngle| ≥ τ, a complete circle or annulus is generated rather than a sector.
+*Угол* задается в радианах, с 0 на - *у* (12 часов) и положительных углов , идущих по часовой стрелке. Если |endAngle - startAngle| ≥ τ, создается полный круг или кольцо, а не сектор.
 
 <a name="arc_padAngle" href="#arc_padAngle">#</a> <i>arc</i>.<b>padAngle</b>([<i>angle</i>]) [<>](https://github.com/d3/d3-shape/blob/master/src/arc.js#L254 "Source")
 
-If *angle* is specified, sets the pad angle to the specified function or number and returns this arc generator. If *angle* is not specified, returns the current pad angle accessor, which defaults to:
+Если указан *угол*, устанавливает угол пэда для указанной функции или числа и возвращает этот генератор дуги. Если *угол* не указан, возвращает текущий метод доступа к углу площадки, который по умолчанию:
 
 ```js
 function padAngle() {
@@ -176,9 +176,9 @@ function padAngle() {
 }
 ```
 
-The pad angle is converted to a fixed linear distance separating adjacent arcs, defined as [padRadius](#arc_padRadius) * padAngle. This distance is subtracted equally from the [start](#arc_startAngle) and [end](#arc_endAngle) of the arc. If the arc forms a complete circle or annulus, as when |endAngle - startAngle| ≥ τ, the pad angle is ignored.
+Угол площадки преобразуется в фиксированное линейное расстояние, разделяющее соседние дуги, определяемое как [padRadius](#arc_padRadius) * padAngle. Это расстояние вычитается одинаково из [начала](#arc_startAngle) и [конца](#arc_endAngle) дуги. Если дуга образует полный круг или кольцо, как в случае |endAngle - startAngle| ≥ τ, угол площадки игнорируется.
 
-If the [inner radius](#arc_innerRadius) or angular span is small relative to the pad angle, it may not be possible to maintain parallel edges between adjacent arcs. In this case, the inner edge of the arc may collapse to a point, similar to a circular sector. For this reason, padding is typically only applied to annular sectors (*i.e.*, when innerRadius is positive), as shown in this diagram:
+Если [внутренний радиус](#arc_innerRadius) или угловой промежуток мал по отношению к углу площадки, может быть невозможно поддерживать параллельные края между соседними дугами. В этом случае внутренний край дуги может свалиться в точку, похожую на круговой сектор. По этой причине заполнение обычно применяется только к кольцевым секторам ( *то есть*, когда innerRadius положителен), как показано на этой диаграмме:
 
 [<img alt="Padded Circular Sectors" src="https://raw.githubusercontent.com/d3/d3-shape/master/img/padded-circular-sector.png" width="250" height="250">](http://bl.ocks.org/mbostock/f37b07b92633781a46f7)[<img alt="Padded Annular Sectors" src="https://raw.githubusercontent.com/d3/d3-shape/master/img/padded-annular-sector.png" width="250" height="250">](http://bl.ocks.org/mbostock/99f0a6533f7c949cf8b8)
 
