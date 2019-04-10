@@ -194,35 +194,35 @@ function padAngle() {
 
 Если указан *контекст*, устанавливает контекст и возвращает этот генератор дуги. Если *контекст* не указан, возвращает текущий контекст, который по умолчанию равен нулю. Если контекст не нулевой, то [сгенерированная дуга](#_arc) визуализируется в этот контекст как последовательность вызовов [метода пути](http://www.w3.org/TR/2dcontext/#canvaspathmethods). В противном случае возвращается строка [данных пути](http://www.w3.org/TR/SVG/paths.html#PathData), представляющая созданную дугу.
 
-### Pies
+### Сектора
 
-The pie generator does not produce a shape directly, but instead computes the necessary angles to represent a tabular dataset as a pie or donut chart; these angles can then be passed to an [arc generator](#arcs).
+Круговой генератор не создает форму непосредственно, а вместо этого вычисляет необходимые углы для представления табличного набора данных в виде круговой или кольцевой диаграммы; эти углы могут быть переданы на [генератор дуги](#arcs).
 
 <a name="pie" href="#pie">#</a> d3.<b>pie</b>() [<>](https://github.com/d3/d3-shape/blob/master/src/pie.js "Source")
 
-Constructs a new pie generator with the default settings.
+Создает новый круговой генератор с настройками по умолчанию.
 
 <a name="_pie" href="#_pie">#</a> <i>pie</i>(<i>data</i>[, <i>arguments…</i>]) [<>](https://github.com/d3/d3-shape/blob/master/src/pie.js#L14 "Source")
 
-Generates a pie for the given array of *data*, returning an array of objects representing each datum’s arc angles. Any additional *arguments* are arbitrary; they are simply propagated to the pie generator’s accessor functions along with the `this` object. The length of the returned array is the same as *data*, and each element *i* in the returned array corresponds to the element *i* in the input data. Each object in the returned array has the following properties:
+Создает круговую диаграмму для данного массива *данных*, возвращая массив объектов, представляющих углы дуги каждого элемента. Любые дополнительные *аргументы* являются произвольными; они просто распространяются на функции доступа к генератору кругового генератора вместе с `this` объектом. Длина возвращаемого массива совпадает с *данными*, и каждый элемент *i* в возвращенном массиве соответствует элементу *i* во входных данных. Каждый объект в возвращаемом массиве имеет следующие свойства:
 
-* `data` - the input datum; the corresponding element in the input data array.
-* `value` - the numeric [value](#pie_value) of the arc.
-* `index` - the zero-based [sorted index](#pie_sort) of the arc.
-* `startAngle` - the [start angle](#pie_startAngle) of the arc.
-* `endAngle` - the [end angle](#pie_endAngle) of the arc.
-* `padAngle` - the [pad angle](#pie_padAngle) of the arc.
+* `data` - исходные данные; соответствующий элемент во входном массиве данных.
+* `value` - числовое [значение](#pie_value) дуги.
+* `index` - [отсортированный по нулю индекс](#pie_sort) дуги.
+* `startAngle` - [начальный угол](#pie_startAngle) дуги.
+* `endAngle` - [конечный угол](#pie_endAngle) дуги.
+* `padAngle` - [угол площадки](#pie_padAngle) дуги.
 
-This representation is designed to work with the arc generator’s default [startAngle](#arc_startAngle), [endAngle](#arc_endAngle) and [padAngle](#arc_padAngle) accessors. The angular units are arbitrary, but if you plan to use the pie generator in conjunction with an [arc generator](#arcs), you should specify angles in radians, with 0 at -*y* (12 o’clock) and positive angles proceeding clockwise.
+Это представление предназначено для работы со стандартными аксессорами [startAngle](#arc_startAngle), [endAngle](#arc_endAngle) и [padAngle](#arc_padAngle) генератора дуги. Угловые единицы являются произвольными, но если вы планируете использовать круговой генератор в сочетании с [генератором дуги](#arcs), вы должны указать углы в радианах, с 0 at -*y* (12 часов) и положительными углами, идущими по часовой стрелке.
 
-Given a small dataset of numbers, here is how to compute the arc angles to render this data as a pie chart:
+Учитывая небольшой набор данных чисел, вот как вычислить углы дуги, чтобы представить эти данные в виде круговой диаграммы:
 
 ```js
 var data = [1, 1, 2, 3, 5, 8, 13, 21];
 var arcs = d3.pie()(data);
 ```
 
-The first pair of parens, `pie()`, [constructs](#pie) a default pie generator. The second, `pie()(data)`, [invokes](#_pie) this generator on the dataset, returning an array of objects:
+Первая пара скобок, `pie()`, [строит](#pie) круговой генератор по умолчанию. Второй, `pie()(data)`, [вызывает](#_pie) этот генератор на набор данных, возвращая массив объектов:
 
 ```json
 [
